@@ -45,9 +45,9 @@ parameters will be required for the stage invalidation (see `dvc status` and
 stage.
 
 Using parameter dependencies prevents situations where several
-[pipeline](/doc/command-reference/pipeline) stages share a (configuration) file
-as a common dependency, and any change in this dependency invalidates all the
-stages and causes the reproduction those stages unnecessarily.
+[pipeline](/doc/command-reference/dag) stages share a (configuration) file as a
+common dependency, and any change in this dependency invalidates all the stages
+and causes the reproduction those stages unnecessarily.
 
 The YAML or JSON parameters files needed for the project have to be manually
 written, or generated, and these can be versioned directly with Git. You can

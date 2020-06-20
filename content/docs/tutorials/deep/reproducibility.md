@@ -12,7 +12,7 @@ without thinking what was affected by your last change.
 
 In order to track all the dependencies, DVC finds and reads all the DVC-files in
 a repository and builds a dependency graph
-([pipeline](/doc/command-reference/pipeline)) based on these files.
+([pipeline](/doc/command-reference/dag)) based on these files.
 
 This is one of the differences between DVC reproducibility and software build
 automation tools ([Make](https://www.gnu.org/software/make/), Maven, Ant,

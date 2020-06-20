@@ -125,7 +125,7 @@ same.
 Once the data files are in the workspace, you can start processing the data and
 train ML models out of the data files. DVC helps you to define
 [stages](/doc/command-reference/run) of your ML process and easily connect them
-into a ML [pipeline](/doc/command-reference/pipeline).
+into a ML [pipeline](/doc/command-reference/dag).
 
 `dvc run` executes any command that you pass it as a list of parameters.
 However, the command to run alone is not as interesting as its role within a

@@ -20,7 +20,7 @@ frozen stages, even if some dependencies have changed, and even if `--force` is
 provided.
 
 Freezing a stage is useful to avoid syncing data from the top of its
-[pipeline](/doc/command-reference/pipeline), and keep iterating on the last
+[pipeline](/doc/command-reference/dag), and keep iterating on the last
 (unfrozen) stages only.
 
 Note that <abbr>import stages</abbr> are considered always frozen. Use

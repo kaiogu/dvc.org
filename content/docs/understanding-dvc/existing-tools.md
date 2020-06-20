@@ -6,8 +6,7 @@ There is one thing that data scientists seem to agree on around tooling: as
 engineers, we'd like to use the same best practices and collaboration software
 that's standard in software engineering. A source code version control system
 (Git), continuous integration services (CI), and unit test frameworks are all
-expected to be utilized in data science
-[pipelines](/doc/command-reference/pipeline).
+expected to be utilized in data science [pipelines](/doc/command-reference/dag).
 
 But a comprehensive look at data science processes shows that the software
 engineering toolset does not completely cover data science needs. Try to answer

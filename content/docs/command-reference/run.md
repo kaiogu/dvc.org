@@ -27,7 +27,7 @@ data input and output that go into creating a result. By specifying lists of
 (`-o`, `-O` options), and/or [metrics](/doc/command-reference/metrics) (`-m`,
 `-M` options), DVC can later connect each stage by building a dependency graph
 ([DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph)). This graph is
-used by DVC to restore a full data [pipeline](/doc/command-reference/pipeline).
+used by DVC to restore a full data [pipeline](/doc/command-reference/dag).
 
 The remaining terminal input provided to `dvc run` after the command options
 (`-`/`--` flags) will become the required `command` argument. Please wrap the
@@ -73,7 +73,7 @@ commands, they should ideally follow these rules:
   at `dvc repro`).
 - Stop reading and writing files when the `command` exits.
 
-Keep in mind that if the [pipeline](/doc/command-reference/pipeline)'s
+Keep in mind that if the [pipeline](/doc/command-reference/dag)'s
 reproducibility goals include consistent output data, its code should be as
 [deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm) as
 possible (produce the same output for a given input). In this case, avoid code
@@ -88,7 +88,7 @@ data pipeline (e.g. random numbers, time functions, hardware dependency, etc.)
   with data, or a code file, or a configuration file. DVC also supports certain
   [external dependencies](/doc/user-guide/external-dependencies).
 
-  DVC builds a dependency graph ([pipeline](/doc/command-reference/pipeline))
+  DVC builds a dependency graph ([pipeline](/doc/command-reference/dag))
   connecting different stages with each other. When you use `dvc repro`, the
   list of dependencies helps DVC analyze whether any dependencies have changed
   and thus executing stages as required to regenerate their output. A special
@@ -212,9 +212,9 @@ To track the changes with git, run:
 	git add .gitignore metric.dvc
 ```
 
-Execute a Python script as a DVC [pipeline](/doc/command-reference/pipeline)
-stage. The stage file name is not specified, so a `model.p.dvc` file is created
-by default based on the registered output (`-o):
+Execute a Python script as a DVC [pipeline](/doc/command-reference/dag) stage.
+The stage file name is not specified, so a `model.p.dvc` file is created by
+default based on the registered output (`-o):
 
 ```dvc
 # Train ML model on the training dataset. 20180226 is a seed value.
@@ -274,8 +274,8 @@ reproduced if/when they change. See `dvc params` for more details.
 
 ## Example: chaining stages (build a pipeline)
 
-DVC [pipelines](/doc/command-reference/pipeline) are constructed by connecting
-one stage outputs to the next's dependencies:
+DVC [pipelines](/doc/command-reference/dag) are constructed by connecting one
+stage outputs to the next's dependencies:
 
 Extract an XML file from an archive to the `data/` folder:
 

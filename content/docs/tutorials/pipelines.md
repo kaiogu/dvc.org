@@ -9,12 +9,11 @@ classifier that can predict posts about the Python language by tagging them
 [Deep Dive Tutorial](/doc/tutorials/deep).)
 
 In this example, we will focus on building a simple ML
-[pipeline](/doc/command-reference/pipeline) that takes an archive with
-StackOverflow posts and trains the prediction model and saves it as an
-<abbr>output</abbr>. See [Get Started](/doc/tutorials/get-started) to see links
-to other examples, tutorials, use cases if you want to cover other aspects of
-the DVC. The pipeline itself is a sequence of transformation we apply to the
-data file:
+[pipeline](/doc/command-reference/dag) that takes an archive with StackOverflow
+posts and trains the prediction model and saves it as an <abbr>output</abbr>.
+See [Get Started](/doc/tutorials/get-started) to see links to other examples,
+tutorials, use cases if you want to cover other aspects of the DVC. The pipeline
+itself is a sequence of transformation we apply to the data file:
 
 ![](/img/example-flow-2x.png)
 
@@ -69,7 +68,7 @@ $ source .env/bin/activate
 $ pip install -r code/requirements.txt
 ```
 
-Next, we will create a [pipeline](/doc/command-reference/pipeline) step-by-step,
+Next, we will create a [pipeline](/doc/command-reference/dag) step-by-step,
 utilizing the same set of commands that are described in the
 [Data Pipelines](/doc/tutorials/get-started/data-pipelines) page of the _Get
 Started_.
@@ -143,10 +142,9 @@ $ git commit -m "Add dataset archive to project"
 ## Define stages
 
 Each [stage](/doc/command-reference/run) – the parts of a
-[pipeline](/doc/command-reference/pipeline) – is described by providing a
-command to run, input data it takes and a list of <abbr>outputs</abbr>. DVC is
-not Python or any other language specific and can wrap any command runnable via
-CLI.
+[pipeline](/doc/command-reference/dag) – is described by providing a command to
+run, input data it takes and a list of <abbr>outputs</abbr>. DVC is not Python
+or any other language specific and can wrap any command runnable via CLI.
 
 The first stage is to extract XML from the archive. Note that we don't need to
 run `dvc add` on `Posts.xml` below, `dvc run` saves the data automatically
@@ -269,8 +267,8 @@ By analyzing dependencies and outputs in DVC-files, we can generate a dependency
 graph: a series of commands DVC needs to execute. `dvc repro` does this in order
 to restore a pipeline and reproduce its intermediate or final results.
 
-`dvc pipeline show` helps to visualize pipelines (run it with the `-c` option to
-see actual commands instead of DVC-files):
+`dvc dag` helps to visualize pipelines (run it with the `-c` option to see
+actual commands instead of DVC-files):
 
 ```dvc
 $ dvc pipeline show --ascii evaluate.dvc
@@ -329,10 +327,10 @@ $ dvc metrics show
 > Since the dataset for this example is extremely simplified to make it faster
 > to run this pipeline, the exact metric number may vary.
 
-It's time to save our [pipeline](/doc/command-reference/pipeline). You can
-confirm that we do not tack files or raw datasets with Git, by using the
-`git status` command. We are just saving a snapshot of the DVC-files that
-describe data, transformations (stages), and relationships between them.
+It's time to save our [pipeline](/doc/command-reference/dag). You can confirm
+that we do not tack files or raw datasets with Git, by using the `git status`
+command. We are just saving a snapshot of the DVC-files that describe data,
+transformations (stages), and relationships between them.
 
 ```dvc
 $ git add *.dvc auc.metric data/.gitignore
@@ -385,8 +383,8 @@ Feel free to commit the remaining changes with Git.
 ## Conclusion
 
 By wrapping your commands with `dvc run`, it's easy to integrate DVC into a
-machine learning or data processing [pipeline](/doc/command-reference/pipeline)
-or other data science processes without any significant effort to rewrite your
+machine learning or data processing [pipeline](/doc/command-reference/dag) or
+other data science processes without any significant effort to rewrite your
 code.
 
 The key detail to notice is that DVC automatically derives the dependencies
