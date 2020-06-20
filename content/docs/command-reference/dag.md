@@ -2,7 +2,7 @@
 
 Show [stages](/doc/command-reference/run) in a pipeline that lead to the
 specified stage. By default it lists
-[DVC-files](/doc/user-guide/dvc-file-format).
+[DVC-files](/doc/user-guide/dvc-files-and-directories).
 
 ## Synopsis
 
@@ -17,7 +17,8 @@ positional arguments:
 ## Description
 
 `dvc dag` displays the stages of a pipeline up to the target stage. If `target`
-is omitted, it will show the full project DAG.
+is omitted, it will show the full project
+[DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph).
 
 ## Options
 
